@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Fields</title>
+</head>
+<body>
+    <h1>Enter Fields</h1>
+    <form method="POST" action="/submit">
+        <label for="fields">Fields (comma separated):</label><br><br>
+        <input type="text" id="fields" name="fields" style="width: 100%;" placeholder="recipientAccountId, responseElements.instancesSet.items[].instanceId, userIdentity.arn"><br><br>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
