@@ -9,15 +9,19 @@ def index():
 @app.route('/submit', methods=['POST'])
 def submit():
     input_string = request.form.get('fields')
-    fields = [field.strip() for field in input_string.split(',')]
-    
-    result = []
+    fields = [field.strip() for field in input_string.split(',') if field.strip()]
+
+    short_result = []
+    full_result_lines = []
     for field in fields:
-        result.append(f"{field} - $result.{field}$")
-    
-    formatted_result = "\n".join(result)
-    
-    return f"<pre>{formatted_result}</pre>"
+        label = field.split('.')[-1]  # Используем последнее имя как читаемое имя
+        short_result.append(f"{label} - $result.{field}$")
+        full_result_lines.append(f"{field} - $result.{field}$\\n")
+
+    short_output = "\n".join(short_result)
+    full_output_string = "".join(full_result_lines)  # Строка с символами \n как текст
+
+    return f"<pre>{short_output}\n\n---\n\n{full_output_string}</pre>"
 
 if __name__ == '__main__':
     app.run(debug=True)
